@@ -1,0 +1,20 @@
+{
+  "name": "rust-neon-lambda-sandbox",
+  "version": "0.1.0",
+  "description": "",
+  "main": "lib/index.js",
+  "author": "bokuweb <bokuweb12@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "neon-cli": "^0.1.22"
+  },
+  "scripts": {
+    "build": "make build",
+    "predeploy": "npm run build",
+    "deploy:s3": "aws s3 cp deployment.zip s3://neon-example/ && aws lambda update-function-code --function-name arn:aws:lambda:us-east-1:656375767177:function:neon-sandbox --s3-bucket neon-example --s3-key deployment.zip",
+    "deploy": "aws lambda update-function-code --function-name arn:aws:lambda:us-east-1:656375767177:function:neon-sandbox --zip-file fileb://deployment.zip"
+  },
+  "devDependencies": {
+    "rimraf": "^2.6.2"
+  }
+}
